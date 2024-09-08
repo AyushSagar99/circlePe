@@ -1,101 +1,81 @@
-import Image from "next/image";
+"use client";
+
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import Step from "./components/step1";
+import Work from "./components/work";
+import Part from "./components/step1part2";
+import { useReveal } from "./hooks/reveal";  // Import custom hook
+import Slide from "./components/step2";
+import Tenant from "./components/step3";
+import Zero from "./components/step4";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  // Use custom hook for Work and Step animations
+  const workReveal = useReveal(0.2);
+  const stepReveal = useReveal(0.3);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+  // Scroll progress tracking
+  const { scrollYProgress } = useScroll();
+  const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30, mass: 0.5 });
+
+  // Convert scroll progress to height percentage
+  const progressHeight = useTransform(smoothProgress, [0, 1], ["0%", "50%"]);
+
+  // Color transition from blue to neon green based on scroll progress
+  const progressColor = useTransform(
+    smoothProgress, 
+    [0, 1], 
+    ["#4B71C5", "#39FF14"] // Blue to neon green
+  );
+
+  // Animation variants for reveal effect
+  const revealVariant = {
+    hidden: { opacity: 0, y: 300 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.25 } },
+  };
+
+  return (
+    <div className="bg-black h-fit relative">
+      {/* Scroll progress indicator */}
+      <motion.div
+        className="fixed top-20 right-40 w-2 rounded-full"
+        style={{ height: progressHeight, backgroundColor: progressColor }}
+      />
+
+      {/* Fixed background blur effect */}
+      <div className="fixed top-[170px] left-[88px] w-[400px] h-[400px] bg-blue-400 rounded-full blur-[200px] opacity-60 z-0"></div>
+
+      {/* Work component */}
+      <motion.div
+        ref={workReveal.ref}
+        className="relative z-10"
+        initial="hidden"
+        animate={workReveal.controls}
+        variants={revealVariant}
+      >
+        <Work />
+      </motion.div>
+
+      {/* Step component */}
+      <motion.div
+        ref={stepReveal.ref}
+        className="relative z-10 mt-16"
+        initial="hidden"
+        animate={stepReveal.controls}
+        variants={revealVariant}
+      >
+        <Step />
+      </motion.div>
+
+      {/* Additional Part component */}
+      <div>
+        <Part />
+      </div>
+
+      {/* Additional components */}
+      <Slide />
+      <Tenant />
+      <Zero />
     </div>
   );
 }
