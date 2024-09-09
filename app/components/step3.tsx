@@ -13,7 +13,7 @@ export default function Tenant() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.25 } },
   };
 
-  // Arrow animation variants
+
   const arrowVariants = {
     hidden: { opacity: 0, x: -100 },
     visible: {
@@ -48,7 +48,7 @@ export default function Tenant() {
           </div>
         </div>
 
-        {/* Image on the right */}
+    
         <Image
           className="ml-28"
           src={step3}
@@ -58,7 +58,7 @@ export default function Tenant() {
         />
       </div>
 
-      {/* Animated Arrow */}
+  
       <motion.div
         className="absolute top-96 left-1/3 transform -rotate-12"
         initial="hidden"

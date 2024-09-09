@@ -2,7 +2,6 @@ import { useAnimation } from "framer-motion";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 
-// Custom hook for revealing elements on scroll
 export function useReveal(threshold = 0.3, triggerOnce = false) {
   const controls = useAnimation();
   const [ref, inView] = useInView({

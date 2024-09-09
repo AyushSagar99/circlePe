@@ -14,9 +14,9 @@ export default function Slide() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.25 } },
   };
 
-  // Arrow animation variants
+  
   const arrowVariants = {
-    hidden: { opacity: 0, x: -50 },  // Arrow starts off-screen
+    hidden: { opacity: 0, x: -50 },  
     visible: {
       opacity: 1,
       x: 0,
@@ -24,7 +24,7 @@ export default function Slide() {
     },
   };
 
-  // Array of bullet points for cleaner rendering
+  
   const bulletPoints = [
     { text: "Zero security deposit move-in", bullet: silverB },
     { text: "Reduced rent offer", bullet: silverB },
@@ -41,10 +41,9 @@ export default function Slide() {
     >
       <div className="flex gap-7 items-center">
         <div className="flex flex-col gap-3">
-          {/* Step 2 Heading */}
+         
           <p className="text-white text-4xl">Step 2</p>
 
-          {/* Yellow bullet with tenant's selection */}
           <div className="flex items-center gap-3">
             <Image
               src={yellowB}
@@ -56,7 +55,7 @@ export default function Slide() {
             <p className="text-yellow-400">Tenant selects Pay with Circle enabling :</p>
           </div>
 
-          {/* Silver bullets with multiple options */}
+          
           <div className="flex flex-col gap-2">
             {bulletPoints.map((point, index) => (
               <div key={index} className="flex items-center gap-2">
@@ -73,7 +72,6 @@ export default function Slide() {
           </div>
         </div>
 
-        {/* Image on the right */}
         <Image
           className="ml-28"
           src={step2}
@@ -83,7 +81,7 @@ export default function Slide() {
         />
       </div>
 
-      {/* Animated Arrow */}
+      
       <motion.div
         className="absolute top-[350px] left-[550px] transform -rotate-12"
         initial="hidden"

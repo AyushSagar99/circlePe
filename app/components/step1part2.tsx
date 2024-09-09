@@ -7,16 +7,16 @@ import silverB from "@/app/assets/silverbullet.png";
 import arrow from "@/app/assets/arrow1part2.png";
 
 export default function Part() {
-  // Using the useReveal custom hook
+ 
   const reveal = useReveal(0.3);
 
-  // Define the animation variants
+
   const revealVariant = {
     hidden: { opacity: 0, y: 305 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.25 } },
   };
 
-  // Arrow animation variants
+
   const arrowVariants = {
     hidden: { opacity: 0, x: -50 },
     visible: { 
@@ -28,7 +28,7 @@ export default function Part() {
 
   return (
     <motion.div
-      ref={reveal.ref} // Hook reference for reveal effect
+      ref={reveal.ref} 
       initial="hidden"
       animate={reveal.controls}
       variants={revealVariant}
@@ -36,10 +36,10 @@ export default function Part() {
     >
       <div className="flex gap-7 items-center">
         <div className="flex flex-col gap-7">
-          {/* Step 1 Heading */}
+      
           <p className="text-white flex flex-col text-4xl">Step 1</p>
 
-          {/* First bullet point */}
+   
           <div className="flex items-center gap-3">
             <Image
               src={silverB}
@@ -51,7 +51,6 @@ export default function Part() {
             <p className="text-white">Tenant selects Property</p>
           </div>
 
-          {/* Second bullet point */}
           <div className="flex items-center gap-3">
             <Image
               src={yellowB}
@@ -66,7 +65,7 @@ export default function Part() {
           </div>
         </div>
 
-        {/* Step 1 Image */}
+       
         <Image
           className="ml-28"
           src={step1}
@@ -76,7 +75,7 @@ export default function Part() {
         />
       </div>
 
-      {/* Animated Arrow */}
+  
       <motion.div
         className="absolute top-[300px] left-[700px]"
         initial="hidden"

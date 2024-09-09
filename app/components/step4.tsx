@@ -2,9 +2,9 @@ import step4 from "@/app/assets/step4.png";
 import Image from "next/image";
 import { useReveal } from "../hooks/reveal";
 import { motion } from "framer-motion";
-import yellowB from "@/app/assets/yellowbullet.png";  // Import yellow bullet
-import silverB from "@/app/assets/silverbullet.png";  // Import silver bullet
-import arrow from "@/app/assets/arrow2.png";  // Import the arrow image
+import yellowB from "@/app/assets/yellowbullet.png";  
+import silverB from "@/app/assets/silverbullet.png";  
+import arrow from "@/app/assets/arrow2.png";  
 
 export default function Zero() {
   const reveal = useReveal(0.3);
@@ -35,7 +35,7 @@ export default function Zero() {
         <div className="flex flex-col gap-4">
           <p className="text-white text-4xl">Step 4</p>
 
-          {/* Yellow bullet for yellow text */}
+         
           <div className="flex items-center gap-3">
             <Image
               src={yellowB}
@@ -47,7 +47,7 @@ export default function Zero() {
             <p className="text-yellow-400">Tenant gets approved to move-in :</p>
           </div>
 
-          {/* Silver bullets for white text */}
+      
           <div className="flex flex-col gap-3 ml-4">
             <div className="flex items-center gap-3">
               <Image
@@ -72,7 +72,7 @@ export default function Zero() {
           </div>
         </div>
 
-        {/* Image for Step 4 */}
+        
         <Image
           className="ml-28"
           src={step4}
@@ -82,7 +82,7 @@ export default function Zero() {
         />
       </div>
 
-      {/* Animated Arrow */}
+   
       <motion.div
         className="absolute top-96 left- transform -rotate-12"
         initial="hidden"

@@ -7,13 +7,13 @@ import {  motion } from "framer-motion";
 import { delay } from "framer-motion/dom";
 
 export default function Step() {
-  // Animation variants for the arrow
+ 
   const arrowVariants = {
-    hidden: { opacity: 0, x: -90 },  // Start off-screen with reduced opacity
+    hidden: { opacity: 0, x: -90 },  
     visible: { 
       opacity: 1, 
       x: 0, 
-      transition: { duration: 0.8, ease: "easeOut", delay:0.25 }, // Animation duration and easing
+      transition: { duration: 0.8, ease: "easeOut", delay:0.25 }, 
     },
   };
 
@@ -23,7 +23,7 @@ export default function Step() {
         <div className="flex flex-col gap-7 relative">
           <p className="text-white text-4xl">Step 1</p>
 
-          {/* Adjusted bullet point and text alignment */}
+          
           <div className="flex items-center gap-3">
             <Image
               src={yellowB}
@@ -49,7 +49,7 @@ export default function Step() {
           </div>
         </div>
 
-        {/* Work image */}
+      
         <Image
           className="ml-28"
           src={work}
@@ -58,7 +58,7 @@ export default function Step() {
           height={100}
         />
 
-        {/* Animated Arrow using next/image and motion.div */}
+        
         <motion.div
           className="absolute top-10 left-72 transform -rotate-12"
           initial="hidden"
