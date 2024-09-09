@@ -37,7 +37,7 @@ export default function Slide() {
       initial="hidden"
       animate={reveal.controls}
       variants={revealVariant}
-      className="flex justify-center items-center h-screen"
+      className="flex relative justify-center items-center h-screen"
     >
       <div className="flex gap-7 items-center">
         <div className="flex flex-col gap-3">
