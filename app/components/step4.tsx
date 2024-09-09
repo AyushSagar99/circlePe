@@ -4,6 +4,7 @@ import { useReveal } from "../hooks/reveal";
 import { motion } from "framer-motion";
 import yellowB from "@/app/assets/yellowbullet.png";  // Import yellow bullet
 import silverB from "@/app/assets/silverbullet.png";  // Import silver bullet
+import arrow from "@/app/assets/arrow2.png";  // Import the arrow image
 
 export default function Zero() {
   const reveal = useReveal(0.3);
@@ -12,13 +13,23 @@ export default function Zero() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.25 } },
   };
 
+  // Arrow animation variants
+  const arrowVariants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
+  };
+
   return (
     <motion.div
       ref={reveal.ref}
       initial="hidden"
       animate={reveal.controls}
       variants={revealVariant}
-      className="flex justify-center items-center h-screen"
+      className="flex justify-center relative items-center h-screen"
     >
       <div className="flex gap-7 items-center">
         <div className="flex flex-col gap-4">
@@ -70,6 +81,21 @@ export default function Zero() {
           height={100}
         />
       </div>
+
+      {/* Animated Arrow */}
+      <motion.div
+        className="absolute top-96 left- transform -rotate-12"
+        initial="hidden"
+        animate="visible"
+        variants={arrowVariants}
+      >
+        <Image
+          src={arrow}
+          alt="arrow"
+          width={350}
+          height={150}
+        />
+      </motion.div>
     </motion.div>
   );
 }
